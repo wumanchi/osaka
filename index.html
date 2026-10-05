@@ -17,16 +17,16 @@
         /* 標題橫幅設計 (單一圖片) */
         .header-banner {
             max-width: 92%;
-            margin: 20px auto;
+            margin: 20px auto 15px; /* 調整外距 */
             display: flex;
             justify-content: center;
         }
         
         .header-banner img {
             width: 100%;
-            height: 150px; /* 限制高度使其成為橫幅比例 */
-            object-fit: cover; /* 確保圖片填滿且不變形 */
-            object-position: center 30%; /* 微調圖片顯示的上下位置 */
+            height: 200px; /* ★稍微加高，讓畫面不那麼扁 */
+            object-fit: cover; 
+            object-position: center 85%; /* ★將對焦位置往下移，確保 OSAKA 字樣完整顯示 */
             border-radius: 16px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
