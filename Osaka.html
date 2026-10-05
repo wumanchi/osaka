@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>✈ 大阪</title>
+    <style>
+        /* 全域設定與明亮可愛配色 (米白底) */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, '微軟正黑體', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfbf7;
+            color: #5c5c5c;
+        }
+
+        /* 標題橫幅設計 (單一圖片) */
+        .header-banner {
+            max-width: 92%;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .header-banner img {
+            width: 100%;
+            height: 150px; /* 限制高度使其成為橫幅比例 */
+            object-fit: cover; /* 確保圖片填滿且不變形 */
+            object-position: center 30%; /* 微調圖片顯示的上下位置 */
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* 導覽列 (分頁標籤) */
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ffffff;
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            border-bottom: 2px solid #fff5ba;
+            z-index: 100;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px 0;
+            margin: 0 5px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            background-color: #ffffff;
+            color: #5c5c5c;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background-color: #fff5ba;
+        }
+
+        /* 內容區塊 */
+        .content {
+            display: none;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        /* 卡片與展開收合風格 */
+        .card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: 2px solid #fff5ba;
+        }
+
+        .card h2 {
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 0; 
+            border-bottom: 3px solid #fff5ba;
+            padding-bottom: 10px;
+            cursor: pointer; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .card h2::after {
+            content: '▼';
+            font-size: 14px;
+            color: #4a779e;
+            transition: transform 0.3s ease;
+        }
+        .card.active h2::after {
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .card.active .card-content {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 航班展示區塊 */
+        .flight-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        .flight-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .flight-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            background-color: #7ab0d6;
+            color: #ffffff;
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        .flight-info {
+            background-color: #fdfbf7;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .flight-info strong {
+            color: #4a779e;
+        }
+
+        /* 住宿展示區塊專用設計 */
+        .hotel-section {
+            margin-bottom: 20px;
+        }
+        .hotel-badge {
+            background-color: #7ab0d6;
+            color: #ffffff;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .hotel-details {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #ffffff;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        .hotel-blue-text {
+            color: #4a779e;
+            font-weight: bold;
+        }
+        .hotel-divider {
+            border-bottom: 1px dashed #e0e0e0;
+            margin: 20px 0;
+        }
+
+        /* 行程展示區塊 */
+        .schedule-day {
+            margin-bottom: 15px;
+        }
+        .schedule-day h3 {
+            background-color: #fff5ba;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .schedule-info {
+            background-color: #fdfbf7;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 40px;
+        }
+
+        /* 地鐵圖區塊 */
+        .map-container {
+            width: 100%;
+            height: 40vh;
+            border: 2px solid #7ab0d6;
+            border-radius: 12px;
+            overflow: auto;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-container img {
+            width: 100%;
+            height: auto;
+            min-width: 600px;
+        }
+        .map-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #7ab0d6;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            box-sizing: border-box;
+        }
+
+        /* 匯率與清單 */
+        .exchange-rate {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .exchange-rate input {
+            width: 45%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #7ab0d6;
+            border-radius: 12px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .list-input-group {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .list-input-group input {
+            flex: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+        }
+        .btn-add {
+            background-color: #7ab0d6;
+            color: #ffffff;
+            border: none;
+            padding: 0 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+        }
+        .list-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 18px;
+        }
+        .item-checkbox {
+            width: 22px;
+            height: 22px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: #7ab0d6;
+        }
+        .item-text {
+            flex: 1;
+            transition: color 0.3s, text-decoration 0.3s;
+        }
+        .item-checkbox:checked + .item-text {
+            text-decoration: line-through;
+            color: #d3d3d3;
+        }
+        .btn-remove {
+            background-color: #ffd1dc;
+            color: #ffffff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 圖片橫幅 -->
+    <div class="header-banner">
+        <img src="A1.jpg" alt="大阪">
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('transport')">交通</button>
+        <button class="tab-btn" onclick="switchTab('schedule')">行程</button>
+        <button class="tab-btn" onclick="switchTab('personal')">個人</button>
+    </div>
+
+    <!-- 交通分頁 -->
+    <div id="transport" class="content active">
+        
+        <div class="card">
+            <h2 onclick="toggleCard(this)">日本地鐵圖</h2>
+            <div class="card-content">
+                <div class="map-container">
+                    <img src="osakametro_rosenzu_20250404.jpg" alt="日本地鐵圖">
+                </div>
+                <a href="osakametro_rosenzu_20250404.pdf" target="_blank" class="map-btn">全螢幕開啟並縮放地鐵圖 (PDF)</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleCard(this)">航班時間</h2>
+            <div class="card-content">
+                <div class="flight-item">
+                    <h3>曼綺</h3>
+                    <div class="flight-info">
+                        <strong>去程：</strong>10/20 越捷 VZ566 (TPE 08:40 - KIX 12:20)<br>
+                        <strong>回程：</strong>尚待確認
+                    </div>
+                </div>
+                <div class="flight-item">
+                    <h3>奐妤</h3>
+                    <div class="flight-info">
+                        <strong>去程：</strong>10/21 星宇 JX822 (TPE 10:15 - KIX 14:00)<br>
+                        <strong>回程：</strong>10/25 星宇 JX821 (KIX 12:20 - TPE 14:35)
+                    </div>
+                </div>
+                <div class="flight-item">
+                    <h3>維德</h3>
+                    <div class="flight-info">
+                        <strong>去程：</strong>10/20 越捷 VZ566 (TPE 08:40 - KIX 12:20)<br>
+                        <strong>回程：</strong>尚待確認
+                    </div>
+                </div>
+                <div class="flight-item">
+                    <h3>家葳</h3>
+                    <div class="flight-info">
+                        <strong>去程：</strong>10/20 越捷 VZ566 (TPE 08:40 - KIX 12:20)<br>
+                        <strong>回程：</strong>尚待確認
+                    </div>
+                </div>
+                <div class="flight-item">
+                    <h3>裕凱</h3>
+                    <div class="flight-info">
+                        <strong>去程：</strong>尚待確認<br>
+                        <strong>回程：</strong>尚待確認
+                    </div>
+                </div>
+                <div class="flight-item">
+                    <h3>湘貽</h3>
+                    <div class="flight-info">
+                        <strong>去程：</strong>尚待確認<br>
+                        <strong>回程：</strong>尚待確認
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleCard(this)">住宿資訊</h2>
+            <div class="card-content">
+                
+                <!-- 住宿 1 & 2 區塊 -->
+                <div class="hotel-section">
+                    <div class="hotel-badge">住宿 1 & 2 (曼綺、家葳、維德、奐妤)</div>
+                    <div class="hotel-details">
+                        <div class="hotel-blue-text">【心齋橋長堀通哈頓飯店 (Hearton Hotel)】</div>
+                        <div>電話：+81-6-71661111</div>
+                        <div>地址：1-5-11, Shinmachi, Nishi-ku, 大阪 日本 550-0013</div>
+                        
+                        <div class="hotel-blue-text" style="margin-top: 15px;">10/20 - 10/24 (4晚)：</div>
+                        <div>MANCHI WU (經濟雙床間) - 訂單: 1616331175005584</div>
+                        
+                        <div class="hotel-blue-text" style="margin-top: 5px;">10/24 - 10/25 (1晚)：</div>
+                        <div>WU HUANYU (經濟雙床間) - 訂單: ORD0030851410</div>
+                        
+                        <div class="hotel-blue-text" style="margin-top: 25px;">【大阪四橋微笑飯店】</div>
+                        <div class="hotel-blue-text">10/24 - 10/25 (1晚)：</div>
+                        <div>曼綺、奐妤 (MANCHI WU / 雙人房 禁菸) - 訂單: 1616333927669067</div>
+                    </div>
+                </div>
+
+                <div class="hotel-divider"></div>
+
+                <!-- 住宿 R 區塊 -->
+                <div class="hotel-section">
+                    <div class="hotel-badge">住宿 R (裕凱、湘貽)</div>
+                    <div class="hotel-details">
+                        <div class="hotel-blue-text">【飯店名稱尚待確認】</div>
+                        <div>入住日期：10/20 - 10/25 (5晚)</div>
+                        <div>入住名單：裕凱、湘貽</div>
+                        <div>訂單資訊：尚待確認</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 行程分頁 -->
+    <div id="schedule" class="content">
+        <div class="card">
+            <h2 onclick="toggleCard(this)">六天行程表 (10/20 - 10/25)</h2>
+            <div class="card-content">
+                <div class="schedule-day">
+                    <h3>10/20 (Day 1)</h3>
+                    <div class="schedule-info">(在此輸入第一天的行程)</div>
+                </div>
+                <div class="schedule-day">
+                    <h3>10/21 (Day 2)</h3>
+                    <div class="schedule-info">(在此輸入第二天的行程)</div>
+                </div>
+                <div class="schedule-day">
+                    <h3>10/22 (Day 3) - 環球影城</h3>
+                    <div class="schedule-info">(在此輸入環球影城行程與設施攻略)</div>
+                </div>
+                <div class="schedule-day">
+                    <h3>10/23 (Day 4)</h3>
+                    <div class="schedule-info">(在此輸入第四天的行程)</div>
+                </div>
+                <div class="schedule-day">
+                    <h3>10/24 (Day 5)</h3>
+                    <div class="schedule-info">(在此輸入第五天的行程)</div>
+                </div>
+                <div class="schedule-day">
+                    <h3>10/25 (Day 6)</h3>
+                    <div class="schedule-info">(在此輸入第六天的行程)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 個人分頁 -->
+    <div id="personal" class="content">
+        <div class="card">
+            <h2 onclick="toggleCard(this)">匯率換算 (日幣 ↔ 台幣)</h2>
+            <div class="card-content">
+                <div class="exchange-rate">
+                    <input type="number" id="jpyInput" placeholder="日幣 (¥)" oninput="calcTWD()">
+                    <span style="font-size: 24px; color: #4a779e; font-weight: bold;">=</span>
+                    <input type="number" id="twdInput" placeholder="台幣 (NT$)" oninput="calcJPY()">
+                </div>
+                <div style="font-size: 14px; text-align: center; color: #999;">預設匯率約 0.21 (可自由替換試算)</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleCard(this)">行李整理</h2>
+            <div class="card-content">
+                <div class="list-input-group">
+                    <input type="text" id="luggageInput" placeholder="新增行李項目...">
+                    <button class="btn-add" onclick="addItem('luggageList', 'luggageInput')">+</button>
+                </div>
+                <div id="luggageList"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 onclick="toggleCard(this)">購買清單</h2>
+            <div class="card-content">
+                <div class="list-input-group">
+                    <input type="text" id="shoppingInput" placeholder="新增購買項目...">
+                    <button class="btn-add" onclick="addItem('shoppingList', 'shoppingInput')">+</button>
+                </div>
+                <div id="shoppingList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 卡片展開收合功能 ---
+        function toggleCard(headerElement) {
+            const card = headerElement.parentElement;
+            card.classList.toggle('active');
+        }
+
+        // --- 自動讀取個人清單功能 ---
+        function initAutoSave() {
+            loadList('luggageList');
+            loadList('shoppingList');
+        }
+
+        // --- 清單相關功能 ---
+        function saveList(listId) {
+            const list = document.getElementById(listId);
+            const items = [];
+            list.querySelectorAll('.list-item').forEach(itemDiv => {
+                const text = itemDiv.querySelector('.item-text').textContent;
+                const isChecked = itemDiv.querySelector('.item-checkbox').checked;
+                items.push({ text: text, isChecked: isChecked });
+            });
+            localStorage.setItem('osaka_' + listId, JSON.stringify(items));
+        }
+
+        function loadList(listId) {
+            const saved = localStorage.getItem('osaka_' + listId);
+            if (saved) {
+                const items = JSON.parse(saved);
+                items.forEach(item => {
+                    createItemElement(listId, item.text, item.isChecked);
+                });
+            }
+        }
+
+        function createItemElement(listId, text, isChecked) {
+            const list = document.getElementById(listId);
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'list-item';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'item-checkbox';
+            checkbox.checked = isChecked;
+            checkbox.onchange = () => saveList(listId);
+
+            const textSpan = document.createElement('span');
+            textSpan.className = 'item-text';
+            textSpan.textContent = text;
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'btn-remove';
+            removeBtn.textContent = '−';
+            removeBtn.onclick = function() {
+                list.removeChild(itemDiv);
+                saveList(listId);
+            };
+
+            itemDiv.appendChild(checkbox);
+            itemDiv.appendChild(textSpan);
+            itemDiv.appendChild(removeBtn);
+            list.appendChild(itemDiv);
+        }
+
+        function addItem(listId, inputId) {
+            const input = document.getElementById(inputId);
+            const text = input.value.trim();
+            if (text === '') return;
+
+            createItemElement(listId, text, false);
+            saveList(listId);
+            input.value = '';
+        }
+
+        // --- 頁面切換與匯率換算 ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        const RATE = 0.21;
+        function calcTWD() {
+            const jpy = document.getElementById('jpyInput').value;
+            const twdInput = document.getElementById('twdInput');
+            if(jpy) {
+                twdInput.value = Math.round(jpy * RATE);
+            } else {
+                twdInput.value = '';
+            }
+        }
+        function calcJPY() {
+            const twd = document.getElementById('twdInput').value;
+            const jpyInput = document.getElementById('jpyInput');
+            if(twd) {
+                jpyInput.value = Math.round(twd / RATE);
+            } else {
+                jpyInput.value = '';
+            }
+        }
+
+        // 當網頁載入完成時，執行清單讀取
+        window.onload = initAutoSave;
+    </script>
+
+</body>
+</html>
