@@ -72,7 +72,7 @@
             display: block;
         }
 
-        /* 卡片風格 (大標題固定不縮放) */
+        /* 卡片風格 */
         .card {
             background-color: #ffffff;
             border-radius: 16px;
@@ -88,6 +88,28 @@
             margin-bottom: 15px; 
             border-bottom: 3px solid #fff5ba;
             padding-bottom: 10px;
+        }
+
+        /* 大標題專用收合設定 */
+        .card h2.toggle-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            margin-bottom: 0; /* 展開前移除底部間距 */
+        }
+        .card h2.toggle-header.active {
+            margin-bottom: 15px; /* 展開後加回間距 */
+        }
+        .card h2.toggle-header::after {
+            content: '▼';
+            font-size: 14px;
+            color: #4a779e;
+            transition: transform 0.3s ease;
+        }
+        .card h2.toggle-header.active::after {
+            transform: rotate(180deg);
         }
 
         /* 共用收合區塊設定 */
@@ -361,8 +383,8 @@
     <div id="transport" class="content active">
         
         <div class="card">
-            <h2>日本地鐵圖</h2>
-            <div>
+            <h2 class="toggle-header" onclick="toggleSection(this)">日本地鐵圖</h2>
+            <div class="toggle-content">
                 <div class="map-container">
                     <img src="osakametro_rosenzu_20250404.jpg" alt="日本地鐵圖">
                 </div>
@@ -371,8 +393,8 @@
         </div>
 
         <div class="card">
-            <h2>航班時間</h2>
-            <div>
+            <h2 class="toggle-header" onclick="toggleSection(this)">航班時間</h2>
+            <div class="toggle-content">
                 <div class="flight-item">
                     <h3 class="toggle-header" onclick="toggleSection(this)">曼綺</h3>
                     <div class="toggle-content">
@@ -431,8 +453,8 @@
         </div>
 
         <div class="card">
-            <h2>住宿資訊</h2>
-            <div>
+            <h2 class="toggle-header" onclick="toggleSection(this)">住宿資訊</h2>
+            <div class="toggle-content">
                 <!-- 維德、家葳 區塊 -->
                 <div class="hotel-section">
                     <div class="hotel-badge toggle-header" onclick="toggleSection(this)">維德、家葳</div>
@@ -532,9 +554,9 @@
     <!-- 個人分頁 -->
     <div id="personal" class="content">
         <div class="card">
-            <h2>匯率換算 (日幣 ↔ 台幣)</h2>
-            <div>
-                <div class="exchange-rate">
+            <h2 class="toggle-header" onclick="toggleSection(this)">匯率換算 (日幣 ↔ 台幣)</h2>
+            <div class="toggle-content">
+                <div class="exchange-rate" style="margin-top: 15px;">
                     <input type="number" id="jpyInput" placeholder="日幣 (¥)" oninput="calcTWD()">
                     <span style="font-size: 24px; color: #4a779e; font-weight: bold;">=</span>
                     <input type="number" id="twdInput" placeholder="台幣 (NT$)" oninput="calcJPY()">
@@ -544,9 +566,9 @@
         </div>
 
         <div class="card">
-            <h2>行李整理</h2>
-            <div>
-                <div class="list-input-group">
+            <h2 class="toggle-header" onclick="toggleSection(this)">行李整理</h2>
+            <div class="toggle-content">
+                <div class="list-input-group" style="margin-top: 15px;">
                     <input type="text" id="luggageInput" placeholder="新增行李項目...">
                     <button class="btn-add" onclick="addItem('luggageList', 'luggageInput')">+</button>
                 </div>
@@ -555,9 +577,9 @@
         </div>
 
         <div class="card">
-            <h2>購買清單</h2>
-            <div>
-                <div class="list-input-group">
+            <h2 class="toggle-header" onclick="toggleSection(this)">購買清單</h2>
+            <div class="toggle-content">
+                <div class="list-input-group" style="margin-top: 15px;">
                     <input type="text" id="shoppingInput" placeholder="新增購買項目...">
                     <button class="btn-add" onclick="addItem('shoppingList', 'shoppingInput')">+</button>
                 </div>
