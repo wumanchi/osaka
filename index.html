@@ -218,7 +218,7 @@
             font-weight: bold;
         }
 
-        /* 行程排程區塊 (黃色標題) */
+        /* 行程排程區塊 */
         .schedule-day {
             margin-bottom: 15px;
         }
@@ -258,7 +258,7 @@
             color: #4a779e;
         }
 
-        /* 美食與特色標籤 */
+        /* 標籤 */
         .tag-food {
             background-color: #ffe4e6;
             color: #be123c;
@@ -290,11 +290,11 @@
         /* 地圖展示外框 */
         .map-container {
             width: 100%;
-            height: 40vh;
+            max-height: 40vh;
             border: 2px solid #7ab0d6;
             border-radius: 12px;
             overflow: auto;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background-color: #ffffff;
             display: flex;
             align-items: center;
@@ -303,21 +303,21 @@
         .map-container img {
             width: 100%;
             height: auto;
-            min-width: 600px;
+            display: block;
         }
         .map-btn {
             display: block;
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background-color: #7ab0d6;
             color: #ffffff;
             text-align: center;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             border-radius: 12px;
             box-sizing: border-box;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         /* 司機日文資訊盒 */
@@ -429,26 +429,15 @@
     <!-- 1. 交通分頁 -->
     <div id="transport" class="content active">
         
-        <!-- 地鐵圖 -->
+        <!-- 地鐵圖 (附本地圖與官方即時路線圖連結) -->
         <div class="card">
-            <h2 class="toggle-header" onclick="toggleSection(this)">日本地鐵圖</h2>
+            <h2 class="toggle-header" onclick="toggleSection(this)">日本地鐵圖 (Osaka Metro)</h2>
             <div class="toggle-content">
                 <div class="map-container">
-                    <img src="osakametro_rosenzu_20250404.jpg" alt="日本地鐵圖">
+                    <img src="osakametro_rosenzu_20250404.jpg" alt="日本地鐵圖" onerror="this.style.display='none'">
                 </div>
-                <a href="osakametro_rosenzu_20250404.pdf" target="_blank" class="map-btn">全螢幕開啟並縮放地鐵圖 (PDF)</a>
-            </div>
-        </div>
-
-        <!-- 環球影城園區地圖 -->
-        <div class="card">
-            <h2 class="toggle-header" onclick="toggleSection(this)">環球影城園區地圖 (USJ)</h2>
-            <div class="toggle-content">
-                <p style="margin-top: 0; font-size: 15px; line-height: 1.6;">
-                    當日推薦透過手機開啟官方互動地圖確認各設施排隊時間、遊行位置與園區指引：
-                </p>
-                <a href="https://www.usj.co.jp/web/zh/tw/service-guide/studio-map" target="_blank" class="map-btn" style="background-color: #e09f67;">開啟 USJ 官方中文互動地圖</a>
-                <a href="https://www.usj.co.jp/tridion/zh-tw/studio-map.pdf" target="_blank" class="map-btn">下載 USJ 全園區官方導覽圖 (PDF)</a>
+                <a href="osakametro_rosenzu_20250404.pdf" target="_blank" class="map-btn">全螢幕開啟本地地鐵圖 (PDF)</a>
+                <a href="https://subway.osakametro.co.jp/guide/routemap.php" target="_blank" class="map-btn" style="background-color: #4a779e;">開啟 Osaka Metro 官方線上高畫質路線圖</a>
             </div>
         </div>
 
@@ -569,7 +558,7 @@
         </div>
     </div>
 
-    <!-- 2. 行程分頁 (以曼綺為主) -->
+    <!-- 2. 行程分頁 (曼綺專屬動線) -->
     <div id="schedule" class="content">
         <div class="card">
             <h2>六天行程表 (10/20 - 10/25)</h2>
