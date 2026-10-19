@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>✈ 大阪</title>
     <style>
-        /* 全域設定與溫暖米白底色 */
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, '微軟正黑體', sans-serif;
             margin: 0;
@@ -14,7 +13,6 @@
             color: #5c5c5c;
         }
 
-        /* 頂部形象橫幅 */
         .header-banner {
             max-width: 92%;
             margin: 20px auto 15px;
@@ -31,7 +29,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        /* 導覽分頁列 */
         .tabs {
             display: flex;
             justify-content: space-around;
@@ -61,7 +58,6 @@
             background-color: #fff5ba;
         }
 
-        /* 內容容器 */
         .content {
             display: none;
             padding: 20px;
@@ -73,7 +69,6 @@
             display: block;
         }
 
-        /* 卡片設計 */
         .card {
             background-color: #ffffff;
             border-radius: 16px;
@@ -91,7 +86,6 @@
             padding-bottom: 10px;
         }
 
-        /* 大標題收合功能 */
         .card h2.toggle-header {
             cursor: pointer;
             display: flex;
@@ -113,7 +107,6 @@
             transform: rotate(180deg);
         }
 
-        /* 收合區塊動畫 */
         .toggle-content {
             display: none;
             animation: fadeIn 0.3s ease;
@@ -126,7 +119,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 航班清單樣式 */
         .flight-item {
             margin-bottom: 15px;
             border-bottom: 1px dashed #e0e0e0;
@@ -173,7 +165,6 @@
             color: #4a779e;
         }
 
-        /* 住宿資訊樣式 */
         .hotel-section {
             margin-bottom: 20px;
         }
@@ -218,7 +209,6 @@
             font-weight: bold;
         }
 
-        /* 行程排程區塊 */
         .schedule-day {
             margin-bottom: 15px;
         }
@@ -258,7 +248,6 @@
             color: #4a779e;
         }
 
-        /* 標籤 */
         .tag-food {
             background-color: #ffe4e6;
             color: #be123c;
@@ -287,7 +276,6 @@
             margin-right: 4px;
         }
 
-        /* 地圖展示外框 */
         .map-container {
             width: 100%;
             max-height: 40vh;
@@ -320,7 +308,6 @@
             margin-bottom: 8px;
         }
 
-        /* 司機日文資訊盒 */
         .driver-box {
             background-color: #f8fafc;
             border: 1px solid #cbd5e1;
@@ -334,7 +321,6 @@
             white-space: pre-wrap;
         }
 
-        /* 匯率與清單 */
         .exchange-rate {
             display: flex;
             align-items: center;
@@ -414,12 +400,10 @@
 </head>
 <body>
 
-    <!-- 頂部圖片橫幅 -->
     <div class="header-banner">
         <img src="A1.jpg" alt="大阪">
     </div>
 
-    <!-- 導覽切換按鈕 -->
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('transport')">交通</button>
         <button class="tab-btn" onclick="switchTab('schedule')">行程</button>
@@ -428,8 +412,6 @@
 
     <!-- 1. 交通分頁 -->
     <div id="transport" class="content active">
-        
-        <!-- 地鐵圖 (附本地圖與官方即時路線圖連結) -->
         <div class="card">
             <h2 class="toggle-header" onclick="toggleSection(this)">日本地鐵圖 (Osaka Metro)</h2>
             <div class="toggle-content">
@@ -441,7 +423,6 @@
             </div>
         </div>
 
-        <!-- 航班時間 -->
         <div class="card">
             <h2 class="toggle-header" onclick="toggleSection(this)">航班時間</h2>
             <div class="toggle-content">
@@ -502,11 +483,9 @@
             </div>
         </div>
 
-        <!-- 住宿資訊 -->
         <div class="card">
             <h2 class="toggle-header" onclick="toggleSection(this)">住宿資訊</h2>
             <div class="toggle-content">
-                <!-- 維德、家葳 -->
                 <div class="hotel-section">
                     <div class="hotel-badge toggle-header" onclick="toggleSection(this)">維德、家葳</div>
                     <div class="toggle-content">
@@ -519,7 +498,6 @@
                     </div>
                 </div>
 
-                <!-- 曼綺、奐妤 -->
                 <div class="hotel-section">
                     <div class="hotel-badge toggle-header" onclick="toggleSection(this)">曼綺、奐妤</div>
                     <div class="toggle-content">
@@ -541,7 +519,6 @@
                     </div>
                 </div>
 
-                <!-- 裕凱、湘貽 -->
                 <div class="hotel-section">
                     <div class="hotel-badge toggle-header" onclick="toggleSection(this)">裕凱、湘貽</div>
                     <div class="toggle-content">
@@ -558,12 +535,12 @@
         </div>
     </div>
 
-    <!-- 2. 行程分頁 (曼綺專屬最佳動線) -->
+    <!-- 2. 行程分頁 -->
     <div id="schedule" class="content">
         <div class="card">
             <h2>六天行程表 (10/20 - 10/25)</h2>
             <div>
-                <!-- 10/20 Day 1 (調整為：通天閣金幣 + 難波八阪神社 + 道頓堀) -->
+                <!-- 10/20 Day 1 -->
                 <div class="schedule-day">
                     <h3 class="toggle-header" onclick="toggleSection(this)">10/20 (Day 1) - 抵達大阪・通天閣吉伊卡哇金幣・難波八阪神社・道頓堀老字號美食</h3>
                     <div class="toggle-content">
@@ -581,17 +558,68 @@
                     </div>
                 </div>
 
-                <!-- 10/21 Day 2 -->
+                <!-- 10/21 Day 2 (黑門市場 4 大名店 + 梅田逛街 + 心齋橋松葉蟹大餐) -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/21 (Day 2) - 大阪城天守閣・黑門市場生魚片・梅田排隊千層酥＆和牛燒肉蟹</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/21 (Day 2) - 大阪城天守閣・黑門市場美食四部曲・梅田千層酥＆心齋橋鮮甜松葉蟹</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
-                            <strong>• 09:30 - 11:30</strong> 搭地鐵長堀鶴見綠地線至森之宮站，<strong>大阪城公園散策</strong>，登天守閣俯瞰大阪市景<br>
-                            <strong>• 11:45 - 13:30</strong> 早午餐前往 <span class="tag-food">市場生魚片</span><strong>【黑門市場】</strong>（現剖生海膽、厚切黑鮪魚大腹刺身拼盤、現烤干貝串）<br>
+                            <strong>• 09:30 - 11:30</strong> 搭地鐵長堀鶴見綠地線至森之宮站，<strong>大阪城公園散策</strong>，登天守閣俯瞰大阪市區全貌<br><br>
+                            <strong>• 11:45 - 13:45【黑門市場 4 大口碑名店循序吃】</strong>：<br>
+                            &nbsp;&nbsp;▸ <strong>第一站｜高橋食品：</strong>先買杯無糖「特濃純豆乳」（濃郁如液態豆腐，暖胃打底）<br>
+                            &nbsp;&nbsp;▸ <strong>第二站｜金槍魚黑銀：</strong>老字號明碼標價！品嚐油脂如雪花化開的黑鮪大腹握壽司或三色鮪魚刺身丼<br>
+                            &nbsp;&nbsp;▸ <strong>第三站｜黑門三平：</strong>冷藏櫃挑選「已標價特粗鱈場蟹（帝王蟹）腳」，現烤爆汁，6 人合買一盒分著嚐鮮最省預算！<br>
+                            &nbsp;&nbsp;▸ <strong>第四站｜三都屋：</strong>70 年和菓子老舖！買顆手工「整顆草莓大福」或「麝香葡萄大福」，酸甜多汁完美收尾<br><br>
                             <strong>• 14:00 - 15:30</strong> 返回飯店稍作休息，迎接搭星宇抵達的奐妤，放好戰利品 6 人全員大集合！<br>
                             <strong>• 16:30 - 17:30</strong> 前往梅田，品嚐排隊甜點 <span class="tag-food">下午茶</span><strong>【grenier (グルニエ)】現烤焦糖布蕾千層酥</strong> (阪急Grand Building 1F)<br>
-                            <strong>• 17:30 - 19:30</strong> 梅田商圈逛街 (阪急三番街吉伊卡哇店、HEP FIVE 魔法少女系列、Links Umeda 超大 UNIQLO/GU)<br>
-                            <strong>• 19:30 - 21:30</strong> 全員慶祝晚餐：<span class="tag-food">燒肉＆蟹</span><strong>梅田和牛燒肉海鮮放題</strong>（黑毛和牛燒肉＋烤松葉蟹/帝王蟹吃到飽）
+                            <strong>• 17:30 - 19:30</strong> 梅田商圈逛街（阪急三番街吉伊卡哇專賣店、HEP FIVE 魔法少女系列、Links Umeda 旗艦 UNIQLO/GU）<br>
+                            <strong>• 19:30 - 20:00</strong> 搭御堂筋線返回心齋橋，先回飯店放好梅田採購戰利品<br>
+                            <strong>• 20:00 - 22:00</strong> 全員慶祝晚餐：<span class="tag-food">螃蟹大餐</span><strong>心齋橋松葉蟹專門店</strong>（步行即可到達，專注品嚐蟹肉鮮甜！）<br><br>
+
+                            <!-- 松葉蟹推薦名店區塊 (Morandi Style) -->
+                            <div style="background: #FAF9F6; border: 1px solid #E2DCD5; border-radius: 12px; padding: 16px; margin-top: 10px;">
+                                <div style="border-left: 3px solid #8FA89B; padding-left: 8px; margin-bottom: 12px;">
+                                    <span style="font-weight: bold; color: #3E4C59; font-size: 15px;">🦀 心齋橋松葉蟹推薦名店二選一</span>
+                                    <div style="font-size: 12px; color: #718096;">距離飯店步行僅約 5~8 分鐘，輕鬆優雅免奔波</div>
+                                </div>
+
+                                <!-- 選項 1：丸花 -->
+                                <div style="background: #FFFFFF; border: 1px solid #E8ECE9; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                        <strong style="color: #4A5568; font-size: 14px;">1. かにや 丸花（心齋橋店）</strong>
+                                        <span style="background: #E8ECE9; color: #526E60; font-size: 11px; padding: 2px 6px; border-radius: 4px;">暢快吃到飽</span>
+                                    </div>
+                                    <div style="font-size: 13px; color: #4A5568; margin: 6px 0;">
+                                        主打<strong>鮮美松葉蟹 ＋ 和牛涮涮鍋/壽喜燒 ＋ 壽司</strong>。冷盤蟹肉甘甜好剝，也能入鍋煮熱，適合想大口爽快吃肉吃蟹！
+                                    </div>
+                                    <div style="font-size: 12px; color: #718096; line-height: 1.5; margin-bottom: 8px;">
+                                        💰 預算：約 ¥6,500 ～ ¥9,000 / 人（約 NT$ 1,400 ～ 1,950）<br>
+                                        📍 大阪市中央区東心斎橋2丁目8-26 FUKU BLD.心斎橋 2F
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <a href="https://maps.google.com/?q=大阪市中央区東心斎橋2丁目8-26" target="_blank" style="flex: 1; text-align: center; text-decoration: none; padding: 6px; background: #F8FAFC; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 12px; color: #4A5568;">📍 Google 地圖</a>
+                                        <a href="https://akr2749144058.owst.jp/" target="_blank" style="flex: 1; text-align: center; text-decoration: none; padding: 6px; background: #8FA89B; border-radius: 6px; font-size: 12px; color: #FFF; font-weight: bold;">📅 官方預約</a>
+                                    </div>
+                                </div>
+
+                                <!-- 選項 2：蟹道樂 本店 -->
+                                <div style="background: #FFFFFF; border: 1px solid #E8ECE9; border-radius: 8px; padding: 12px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                        <strong style="color: #4A5568; font-size: 14px;">2. かに道楽（道頓堀本店）</strong>
+                                        <span style="background: #EFE7E1; color: #8C6D62; font-size: 11px; padding: 2px 6px; border-radius: 4px;">經典會席・專人服務</span>
+                                    </div>
+                                    <div style="font-size: 13px; color: #4A5568; margin: 6px 0;">
+                                        道頓堀大螃蟹地標！一套享受<strong>松葉蟹刺身、炭烤蟹腳、蟹肉天婦羅、紙鍋與精華蟹膏雜炊</strong>，蟹殼皆預先敲開，優雅不狼狽。
+                                    </div>
+                                    <div style="font-size: 12px; color: #718096; line-height: 1.5; margin-bottom: 8px;">
+                                        💰 預算：會席約 ¥7,000 ～ ¥12,000 / 人（約 NT$ 1,500 ～ 2,600）<br>
+                                        📍 大阪市中央区道頓堀1-6-18（戎橋旁）
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <a href="https://maps.google.com/?q=かに道楽+道頓堀本店" target="_blank" style="flex: 1; text-align: center; text-decoration: none; padding: 6px; background: #F8FAFC; border: 1px solid #CBD5E0; border-radius: 6px; font-size: 12px; color: #4A5568;">📍 Google 地圖</a>
+                                        <a href="https://douraku.co.jp.t.at.hp.transer.com/kansai/honten/" target="_blank" style="flex: 1; text-align: center; text-decoration: none; padding: 6px; background: #8FA89B; border-radius: 6px; font-size: 12px; color: #FFF; font-weight: bold;">📅 官網中文預約</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -646,13 +674,14 @@
                     </div>
                 </div>
 
-                <!-- 10/24 Day 5 (調整為：心齋橋主力逛街 + 貓頭鷹咖啡 + 臨空城 Outlet + 壽喜燒) -->
+                <!-- 10/24 Day 5 -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/24 (Day 5) - 心齋橋主力逛街・貓頭鷹咖啡・臨空城 Outlet 大採購 (3.5hr)・和牛壽喜燒</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/24 (Day 5) - 心齋橋主力逛街・Human Made・貓頭鷹咖啡・臨空城 Outlet 大採購・平價壽喜燒</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
                             <strong>• 09:00 - 09:45</strong> <span class="tag-food">早餐</span><strong>【丸福珈琲店（千日前本店）】</strong>享受昭和風滑嫩高湯厚蛋三明治與冰拿鐵<br>
-                            <strong>• 10:00 - 13:00【心齋橋筋主力採購街】（就在飯店旁，買完直接回房間放！）</strong>：<br>
+                            <strong>• 10:00 - 13:00【心齋橋筋主力採購街】（買完直接送回飯店放，超輕鬆！）</strong>：<br>
+                            &nbsp;&nbsp;▸ <span class="tag-shop">潮牌服飾</span><strong>【HUMAN MADE OSAKA】</strong>心齋橋 PARCO 1F（挑選大阪限定愛心 T 恤與配件）<br>
                             &nbsp;&nbsp;▸ <span class="tag-shop">日雜</span><strong>【3COINS+plus 心齋橋店】</strong>精緻質感生活雜貨、髮飾與旅行收納小物<br>
                             &nbsp;&nbsp;▸ <span class="tag-shop">吉伊卡哇</span><strong>心齋橋 PARCO 6F</strong>【ちいかわらんど】官方旗艦專賣店<br>
                             &nbsp;&nbsp;▸ <span class="tag-shop">布丁狗</span><strong>三麗鷗心齋橋專賣店</strong>（兩層樓旗艦店超齊全）<br>
@@ -663,7 +692,7 @@
                             <strong>• 16:30 - 20:00【臨空城 Outlet（Rinku Premium Outlets）大逛 3.5 小時】</strong>：<br>
                             &nbsp;&nbsp;▸ 關西最大海灣 Outlet，運動精品、日系品牌超殺折扣一次買到手軟！<br>
                             <strong>• 20:00 - 21:00</strong> 滿載戰利品搭南海電鐵返回心齋橋/難波<br>
-                            <strong>• 21:00 - 22:30</strong> 旅程壓軸大餐：<span class="tag-food">壽喜燒</span><strong>【すき焼 北むら】</strong>或<strong>【播重 (Harijyu) 道頓堀本店】</strong>乾煎頂級黑毛和牛裹蛋液，回飯店打包行李
+                            <strong>• 21:00 - 22:30</strong> 旅程壓軸大餐：<span class="tag-food">免預訂壽喜燒</span><strong>【但馬屋 DX 心齋橋店】</strong>或<strong>【大眾壽喜燒 北斗 GEMS難波店】</strong>（免吃昂貴和牛，國產牛/特選牛沾蛋液超滿足，每人僅約 ¥2,500～¥3,800，現場排隊快速入座）
                         </div>
                     </div>
                 </div>
@@ -722,7 +751,6 @@
     </div>
 
     <script>
-        // 即時匯率 API 串接
         let RATE = 0.21;
 
         async function fetchExchangeRate() {
@@ -745,12 +773,10 @@
             }
         }
 
-        // 點擊切換展開/收合
         function toggleSection(headerElement) {
             headerElement.classList.toggle('active');
         }
 
-        // 自動讀取本地清單
         function initAutoSave() {
             loadList('luggageList');
             loadList('shoppingList');
@@ -816,7 +842,6 @@
             input.value = '';
         }
 
-        // 分頁切換
         function switchTab(tabId) {
             document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -824,7 +849,6 @@
             event.currentTarget.classList.add('active');
         }
 
-        // 匯率計算
         function calcTWD() {
             const jpy = document.getElementById('jpyInput').value;
             const twdInput = document.getElementById('twdInput');
@@ -844,12 +868,10 @@
             }
         }
 
-        // 頁面載入完成執行
         window.onload = function() {
             initAutoSave();
             fetchExchangeRate();
         };
     </script>
-
 </body>
 </html>
