@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>✈ 大阪</title>
     <style>
-        /* 全域設定與米白溫暖底色 */
+        /* 全域設定與溫暖米白底色 */
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, '微軟正黑體', sans-serif;
             margin: 0;
@@ -14,7 +14,7 @@
             color: #5c5c5c;
         }
 
-        /* 頂部橫幅 */
+        /* 頂部形象橫幅 */
         .header-banner {
             max-width: 92%;
             margin: 20px auto 15px;
@@ -31,7 +31,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
-        /* 分頁導覽列 */
+        /* 導覽分頁列 */
         .tabs {
             display: flex;
             justify-content: space-around;
@@ -61,7 +61,7 @@
             background-color: #fff5ba;
         }
 
-        /* 內容區塊 */
+        /* 內容容器 */
         .content {
             display: none;
             padding: 20px;
@@ -73,7 +73,7 @@
             display: block;
         }
 
-        /* 卡片外框 */
+        /* 卡片設計 */
         .card {
             background-color: #ffffff;
             border-radius: 16px;
@@ -126,7 +126,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 航班清單 */
+        /* 航班清單樣式 */
         .flight-item {
             margin-bottom: 15px;
             border-bottom: 1px dashed #e0e0e0;
@@ -173,7 +173,7 @@
             color: #4a779e;
         }
 
-        /* 住宿區塊 */
+        /* 住宿資訊樣式 */
         .hotel-section {
             margin-bottom: 20px;
         }
@@ -218,7 +218,7 @@
             font-weight: bold;
         }
 
-        /* 行程區塊 (黃色按鈕) */
+        /* 行程排程區塊 (黃色標題) */
         .schedule-day {
             margin-bottom: 15px;
         }
@@ -258,7 +258,7 @@
             color: #4a779e;
         }
 
-        /* 美食與購物標籤 */
+        /* 美食與特色標籤 */
         .tag-food {
             background-color: #ffe4e6;
             color: #be123c;
@@ -277,8 +277,17 @@
             font-weight: bold;
             margin-right: 4px;
         }
+        .tag-tip {
+            background-color: #fef3c7;
+            color: #b45309;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-right: 4px;
+        }
 
-        /* 地鐵圖展示盒 */
+        /* 地圖展示外框 */
         .map-container {
             width: 100%;
             height: 40vh;
@@ -308,6 +317,21 @@
             font-weight: bold;
             border-radius: 12px;
             box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        /* 司機日文資訊盒 */
+        .driver-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: monospace, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 10px;
+            color: #334155;
+            white-space: pre-wrap;
         }
 
         /* 匯率與清單 */
@@ -390,12 +414,12 @@
 </head>
 <body>
 
-    <!-- 圖片橫幅 -->
+    <!-- 頂部圖片橫幅 -->
     <div class="header-banner">
         <img src="A1.jpg" alt="大阪">
     </div>
 
-    <!-- 導覽分頁按鈕 -->
+    <!-- 導覽切換按鈕 -->
     <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('transport')">交通</button>
         <button class="tab-btn" onclick="switchTab('schedule')">行程</button>
@@ -405,6 +429,7 @@
     <!-- 1. 交通分頁 -->
     <div id="transport" class="content active">
         
+        <!-- 地鐵圖 -->
         <div class="card">
             <h2 class="toggle-header" onclick="toggleSection(this)">日本地鐵圖</h2>
             <div class="toggle-content">
@@ -415,6 +440,19 @@
             </div>
         </div>
 
+        <!-- 環球影城園區地圖 -->
+        <div class="card">
+            <h2 class="toggle-header" onclick="toggleSection(this)">環球影城園區地圖 (USJ)</h2>
+            <div class="toggle-content">
+                <p style="margin-top: 0; font-size: 15px; line-height: 1.6;">
+                    當日推薦透過手機開啟官方互動地圖確認各設施排隊時間、遊行位置與園區指引：
+                </p>
+                <a href="https://www.usj.co.jp/web/zh/tw/service-guide/studio-map" target="_blank" class="map-btn" style="background-color: #e09f67;">開啟 USJ 官方中文互動地圖</a>
+                <a href="https://www.usj.co.jp/tridion/zh-tw/studio-map.pdf" target="_blank" class="map-btn">下載 USJ 全園區官方導覽圖 (PDF)</a>
+            </div>
+        </div>
+
+        <!-- 航班時間 -->
         <div class="card">
             <h2 class="toggle-header" onclick="toggleSection(this)">航班時間</h2>
             <div class="toggle-content">
@@ -475,6 +513,7 @@
             </div>
         </div>
 
+        <!-- 住宿資訊 -->
         <div class="card">
             <h2 class="toggle-header" onclick="toggleSection(this)">住宿資訊</h2>
             <div class="toggle-content">
@@ -526,29 +565,29 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- 2. 行程分頁 -->
+    <!-- 2. 行程分頁 (以曼綺為主) -->
     <div id="schedule" class="content">
         <div class="card">
             <h2>六天行程表 (10/20 - 10/25)</h2>
             <div>
                 <!-- 10/20 Day 1 -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/20 (Day 1) - 心齋橋流行巡禮・道頓堀大阪燒＆關東煮老店</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/20 (Day 1) - 心齋橋逛街 (3COINS/吉伊卡哇/布丁狗/GU/UNIQLO) ＆ 道頓堀老字號美食</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
                             <strong>• 12:20</strong> 曼綺、維德、家葳抵達關西機場 (VZ566)<br>
-                            <strong>• 13:30 - 14:45</strong> 搭南海電鐵特急至難波，轉四橋線抵達飯店辦理入住 / 寄放行李<br>
-                            <strong>• 15:30 - 18:30</strong> 心齋橋筋採買巡禮：<br>
-                            &nbsp;&nbsp;▸ <span class="tag-shop">吉伊卡哇</span><strong>心齋橋 PARCO 6F</strong>【ちいかわらんど】官方專賣店<br>
+                            <strong>• 13:30 - 14:45</strong> 搭南海電鐵特急至難波，轉四橋線至飯店辦理入住 / 寄放行李<br>
+                            <strong>• 15:30 - 18:30</strong> 心齋橋筋主力採購街漫步：<br>
+                            &nbsp;&nbsp;▸ <span class="tag-shop">日雜</span><strong>【3COINS+plus 心齋橋店】</strong>精緻質感生活雜貨、髮飾與旅行收納小物<br>
+                            &nbsp;&nbsp;▸ <span class="tag-shop">吉伊卡哇</span><strong>心齋橋 PARCO 6F</strong>【ちいかわらんど】官方旗艦專賣店<br>
                             &nbsp;&nbsp;▸ <span class="tag-shop">布丁狗</span><strong>三麗鷗心齋橋專賣店</strong>（兩層樓旗艦店超齊全）<br>
-                            &nbsp;&nbsp;▸ <span class="tag-shop">服飾</span><strong>UNIQLO ＆ GU 心齋橋店</strong>採買秋冬新款<br>
-                            &nbsp;&nbsp;▸ <span class="tag-food">章魚燒</span>路過品嚐<strong>【たこ焼 十八番】</strong>天婦羅酥脆麵衣章魚燒<br>
-                            <strong>• 18:30 - 20:30</strong> 與裕凱會合，道頓堀跑跑人拍照，晚餐享用 <span class="tag-food">大阪燒</span><strong>【味乃家 本店】</strong>或<strong>【美津の】</strong><br>
+                            &nbsp;&nbsp;▸ <span class="tag-shop">服飾</span><strong>UNIQLO ＆ GU 心齋橋店</strong>採買秋冬新款服飾<br>
+                            &nbsp;&nbsp;▸ <span class="tag-food">章魚燒</span>路過品嚐<strong>【たこ焼 十八番】</strong>招牌天婦羅酥脆麵衣章魚燒<br>
+                            <strong>• 18:30 - 20:30</strong> 與裕凱會合，道頓堀固力果跑跑人拍照，晚餐享用 <span class="tag-food">大阪燒</span><strong>【味乃家 本店】</strong>或<strong>【美津の】</strong><br>
                             <strong>• 21:00 - 22:30</strong> 宵夜小酌：<span class="tag-food">關東煮</span><strong>【たこ梅 本店】</strong>道頓堀 180 年老鋪（必點爆汁燉蘿蔔與牛筋串）
                         </div>
                     </div>
@@ -556,14 +595,14 @@
 
                 <!-- 10/21 Day 2 -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/21 (Day 2) - 大阪城・黑門市場生魚片・梅田千層酥＆和牛燒肉蟹</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/21 (Day 2) - 大阪城天守閣・黑門市場生魚片・梅田排隊千層酥＆和牛燒肉蟹</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
-                            <strong>• 09:30 - 11:30</strong> 搭地鐵前往<strong>大阪城公園散策</strong>，登天守閣俯瞰市景<br>
-                            <strong>• 11:45 - 13:30</strong> 早午餐前往 <span class="tag-food">市場生魚片</span><strong>【黑門市場】</strong>（現剖海膽、厚切黑鮪魚大腹刺身拼盤、現烤干貝串）<br>
-                            <strong>• 14:00 - 15:30</strong> 返回飯店稍作休息，迎接搭星宇抵達的奐妤，6人全員大集合！<br>
+                            <strong>• 09:30 - 11:30</strong> 搭地鐵長堀鶴見綠地線至森之宮站，<strong>大阪城公園散策</strong>，登天守閣俯瞰大阪市景<br>
+                            <strong>• 11:45 - 13:30</strong> 早午餐前往 <span class="tag-food">市場生魚片</span><strong>【黑門市場】</strong>（現剖生海膽、厚切黑鮪魚大腹刺身拼盤、現烤干貝串）<br>
+                            <strong>• 14:00 - 15:30</strong> 返回飯店稍作休息，迎接搭星宇抵達的奐妤，放好戰利品 6 人全員大集合！<br>
                             <strong>• 16:30 - 17:30</strong> 前往梅田，品嚐排隊甜點 <span class="tag-food">下午茶</span><strong>【grenier (グルニエ)】現烤焦糖布蕾千層酥</strong> (阪急Grand Building 1F)<br>
-                            <strong>• 17:30 - 19:30</strong> 梅田商圈逛街 (阪急三番街吉伊卡哇店、HEP FIVE 魔法少女系列、Links Umeda 旗艦 UNIQLO/GU)<br>
+                            <strong>• 17:30 - 19:30</strong> 梅田商圈逛街 (阪急三番街吉伊卡哇店、HEP FIVE 魔法少女系列、Links Umeda 超大 UNIQLO/GU)<br>
                             <strong>• 19:30 - 21:30</strong> 全員慶祝晚餐：<span class="tag-food">燒肉＆蟹</span><strong>梅田和牛燒肉海鮮放題</strong>（黑毛和牛燒肉＋烤松葉蟹/帝王蟹吃到飽）
                         </div>
                     </div>
@@ -571,69 +610,82 @@
 
                 <!-- 10/22 Day 3 -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/22 (Day 3) - 日本環球影城 (USJ) 全日暢玩・暖心雞白湯拉麵</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/22 (Day 3) - 日本環球影城 (USJ) 全日暢玩推薦攻略・暖心雞白湯拉麵</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
-                            <strong>• 07:30</strong> 提早抵達環球影城門口排隊入園<br><br>
+                            <strong>• 07:30</strong> 提早抵達環球影城門口排隊入園，把握早晨第一波熱門設施<br><br>
                             <strong style="color: #4a779e;">🎟️ 快速通關券4 - Minecart & Jurassic Park (6人)</strong><br><br>
                             <strong>⏰ 指定時間場次：</strong><br>
-                            • 09:10-10:10｜超級任天堂世界園區保證入場券<br>
-                            • 09:10-09:40｜耀西冒險<br>
-                            • 09:40-10:10｜咚奇剛的瘋狂礦車™<br><br>
-                            <strong>🎢 無指定場次 (選定當日體驗1次)：</strong><br>
-                            • 小小兵瘋狂乘車遊<br>
-                            • 大白鯊 或 侏羅紀公園 - 乘船遊 (2擇1，留意 18:30 後暫停營運)<br><br>
-                            <strong>• 21:00 - 22:30</strong> 回心齋橋暖胃宵夜：<span class="tag-food">拉麵</span><strong>【鶏 Soba 座銀（心齋橋本店）】</strong>極上濃郁雞白湯拉麵佐酥炸牛蒡
+                            • <strong>09:10-10:10</strong>｜超級任天堂世界園區保證入場券<br>
+                            • <strong>09:10-09:40</strong>｜耀西冒險<br>
+                            • <strong>09:40-10:10</strong>｜咚奇剛的瘋狂礦車™<br>
+                            • <strong>10:15-11:30</strong>｜園區敲問號磚塊、奇諾比奧咖啡店享用造型點心<br><br>
+                            <strong>🎢 推薦體驗動線：</strong><br>
+                            • <strong>12:00 - 13:30</strong> 小小兵樂園：體驗快速通關無指定場次的「小小兵瘋狂乘車遊」<br>
+                            • <strong>14:00 - 15:30</strong> 侏羅紀公園 / 大白鯊（二擇一，<strong>注意 18:30 後暫停營運</strong>）<br>
+                            • <strong>16:00 - 18:00</strong> 哈利波特的魔法世界（活米村奶油啤酒、三根掃帚外景觀拍照）<br>
+                            • <strong>18:30 - 20:30</strong> 感受萬聖節限定街頭殭屍派對、體驗夜間好萊塢美夢乘車遊<br><br>
+                            <strong>• 21:30 - 22:30</strong> 回心齋橋宵夜暖胃：<span class="tag-food">拉麵</span><strong>【鶏 Soba 座銀（心齋橋本店）】</strong>極上濃郁雞白湯拉麵佐酥炸牛蒡
                         </div>
                     </div>
                 </div>
 
                 <!-- 10/23 Day 4 -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/23 (Day 4) - 箕面勝尾寺達摩・京都雙經典・狐狸吉伊卡哇</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/23 (Day 4) - 專屬包車 10 小時 (箕面勝尾寺・京都伏見稻荷・清水寺)</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
-                            <strong>• 07:30 - 08:30</strong> 出發搭御堂筋線至「箕面萱野站」轉乘公車或計程車<br>
-                            <strong>• 08:30 - 10:30</strong> 【勝尾寺】參拜祈求勝利，欣賞滿山可愛達摩不倒翁<br>
-                            <strong>• 10:30 - 12:00</strong> 移動前往京都伏見稻荷<br>
-                            <strong>• 12:00 - 14:00</strong> 【伏見稻荷大社】千本鳥居散步，參道享用午餐與小吃<br>
+                            <span class="tag-tip">包車服務時段：08:00 - 18:00 (計 10 小時)</span><br><br>
+                            <strong>• 08:00</strong> 司機於【心齋橋長堀通哈頓飯店】準時接載出發<br>
+                            <strong>• 08:50 - 10:45【勝尾寺】</strong>清晨參拜祈求勝利，欣賞滿山可愛的達摩不倒翁（停留約 1 小時 50 分）<br>
+                            <strong>• 11:45 - 14:00【伏見稻荷大社】</strong>（停留約 2 小時 15 分）：<br>
+                            &nbsp;&nbsp;▸ 參拜千本鳥居散步拍照<br>
+                            &nbsp;&nbsp;▸ 參道商店街享用午餐與小吃<br>
                             &nbsp;&nbsp;▸ <span class="tag-shop">吉伊卡哇</span>參道朝聖<strong>【ちいかわ もぐもぐ本舗（伏見店）】</strong>入手狐狸限定裝扮周邊！<br>
-                            <strong>• 14:30 - 17:30</strong> 【清水寺】參拜清水舞台與音羽之瀑，漫步二年坂、三年坂<br>
-                            <strong>• 18:00 - 20:00</strong> 祇園四條/河原町享用京都晚餐 (先斗町居酒屋或鴨肉麵)<br>
-                            <strong>• 20:30</strong> 搭京阪/阪急電車返回大阪心齋橋
+                            <strong>• 14:30 - 16:45【清水寺・二年坂・三年坂】</strong>（停留約 2 小時 15 分）：<br>
+                            &nbsp;&nbsp;▸ 參拜世界遺產清水舞台、音羽之瀑，漫步石板街道品嚐宇治抹茶甜點<br>
+                            <strong>• 16:45</strong> 清水坂觀光停車場準時上車返程<br>
+                            <strong>• 18:00</strong> 返抵大阪心齋橋/飯店，圓滿結束 10 小時包車，晚上於心齋橋悠閒享用晚餐<br><br>
+
+                            <strong>司機日文行程備忘 (可出示司機)：</strong>
+                            <div class="driver-box">【10/23 貸切チャーター運行予定表（10時間）】
+08:00 ハートンホテル心斎橋長堀通 出発
+08:50 - 10:45 勝尾寺（箕面市粟生間谷2914-1）
+11:45 - 14:00 伏見稲荷大社（京都市伏見区深草藪之内町68）
+14:30 - 16:45 清水寺（清水坂観光駐車場発着）
+18:00 ハートンホテル心斎橋長堀通（到着・終了）</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 10/24 Day 5 -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/24 (Day 5) - 通天閣吉伊卡哇金幣・貓頭鷹咖啡・和牛壽喜燒盛宴</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/24 (Day 5) - 通天閣金幣・貓頭鷹咖啡・臨空城 Outlet 大採購 (3.5hr)・和牛壽喜燒</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
-                            <strong>• 09:00 - 09:45</strong> <span class="tag-food">早餐</span><strong>【丸福珈琲店（千日前本店）】</strong>品嚐昭和老派高湯厚蛋三明治與冰拿鐵<br>
+                            <strong>• 09:00 - 09:45</strong> <span class="tag-food">早餐</span><strong>【丸福珈琲店（千日前本店）】</strong>享受昭和風滑嫩高湯厚蛋三明治與冰拿鐵<br>
                             <strong>• 10:00 - 11:00</strong> <span class="tag-shop">紀念金幣</span>前往<strong>【通天閣 B1F 免費區】</strong>投幣購買「吉伊卡哇金屬紀念幣」，現場刻專屬英文字與日期<br>
                             <strong>• 11:15 - 12:15</strong> 參拜<strong>【難波八阪神社】</strong>震撼巨大獅子殿舞台吸走厄運<br>
-                            <strong>• 12:30 - 14:00</strong> 美國村/南船場悠閒散步與早午餐<br>
-                            <strong>• 14:15 - 15:30</strong> 【Owl Cafe Chouette】14:30 貓頭鷹互動預約場次<br>
-                            <strong>• 15:45 - 16:45</strong> <span class="tag-food">下午茶</span><strong>【幸福鬆餅（心齋橋店）】</strong>空氣感舒芙蕾厚鬆餅<br>
-                            <strong>• 17:00 - 19:30</strong> 房型切換手續，難波 BicCamera ＋ 心齋橋各大藥妝店、GU/UNIQLO 最後退稅補齊<br>
-                            <strong>• 19:30 - 21:30</strong> 壓軸晚餐：<span class="tag-food">壽喜燒</span><strong>【すき焼 北むら】</strong>或<strong>【播重 (Harijyu) 道頓堀本店】</strong>乾煎頂級黑毛和牛裹金黃生蛋液<br>
-                            <strong>• 21:30 - 23:00</strong> 宵夜場：<span class="tag-food">串燒</span>心齋橋炭火地雞燒鳥居酒屋，回飯店打包行李
+                            <strong>• 12:30 - 14:00</strong> 心齋橋周邊享用午餐與散步放鬆<br>
+                            <strong>• 14:15 - 15:30</strong> 【Owl Cafe Chouette】14:30 貓頭鷹互動預約場次體驗<br>
+                            <strong>• 15:30 - 16:30</strong> 搭乘南海電鐵直奔<strong>【臨空城站】</strong>（約 40 分鐘）<br>
+                            <strong>• 16:30 - 20:00【臨空城 Outlet（Rinku Premium Outlets）大逛 3.5 小時】</strong>：<br>
+                            &nbsp;&nbsp;▸ 關西最大海灣 Outlet，運動精品、日系品牌超殺折扣一次買到手軟<br>
+                            <strong>• 20:00 - 21:00</strong> 滿載戰利品搭南海電鐵返回心齋橋/難波<br>
+                            <strong>• 21:00 - 22:30</strong> 壓軸晚餐：<span class="tag-food">壽喜燒</span><strong>【すき焼 北むら】</strong>或<strong>【播重 (Harijyu) 道頓堀本店】</strong>乾煎頂級黑毛和牛裹蛋液，回飯店打包行李
                         </div>
                     </div>
                 </div>
 
                 <!-- 10/25 Day 6 -->
                 <div class="schedule-day">
-                    <h3 class="toggle-header" onclick="toggleSection(this)">10/25 (Day 6) - 依班機分梯返程</h3>
+                    <h3 class="toggle-header" onclick="toggleSection(this)">10/25 (Day 6) - 從容返程・關西機場免稅店最後衝刺</h3>
                     <div class="toggle-content">
                         <div class="schedule-info">
-                            <strong>• 第一梯次 (維德、家葳)：</strong>樂桃 MM031 (10:35 起飛前往高雄)<br>
-                            &nbsp;&nbsp;→ 建議 07:30 前退房出發前往關西機場第2航廈。<br><br>
-                            <strong>• 第二梯次 (曼綺、裕凱、奐妤)：</strong>越捷/漢恩/星宇 (12:00 - 12:20 起飛前往台北)<br>
-                            &nbsp;&nbsp;→ 建議 08:30 - 08:45 前退房前往難波搭乘南海特急 Rapi:t，9:45 左右抵達關空辦理退稅登機。<br><br>
-                            <strong>• 第三梯次 (湘貽)：</strong>華航 CI0177 (20:10 起飛前往高雄)<br>
-                            &nbsp;&nbsp;→ 行李寄放飯店，可悠閒走訪中之島美術館或前往臨空城 Outlet 逛街至傍晚。
+                            <strong>• 08:30 - 08:45</strong> 辦理退房，前往南海難波站搭乘 09:00 前後的南海特急 Rapi:t<br>
+                            <strong>• 09:45</strong> 抵達關西機場第 1 航廈辦理報到、托運行李與出關<br>
+                            <strong>• 10:30 - 11:45</strong> 機場免稅店採買伴手禮（白色戀人、生巧克力、東京芭娜娜）<br>
+                            <strong>• 12:00</strong> 搭乘漢恩/越捷班機起飛返台，結束滿載而歸的大阪之旅！
                         </div>
                     </div>
                 </div>
